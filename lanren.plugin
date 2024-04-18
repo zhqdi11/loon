@@ -1,6 +1,11 @@
-# > 懒人听书
-# hostname = 118.178.214.118, dapis.mting.info, display.wting.info
-^https?:\/\/118\.178\.214\.118\/yyting\/advertclient\/ClientAdvertList\.action url reject-img
-^https?:\/\/dapis\.mting\.info\/yyting\/advertclient\/ClientAdvertList\.action url reject-img
-^https?:\/\/.*\/yyting\/advertclient\/ClientAdvertList.action url reject
-^https?:\/\/display\.wting\.info\/.*.jpeg url reject-200
+[Script]
+# > 懒人听书vip
+http-response ^https?:\/\/(shapi|gzapi).mting.info\/yyting\/(usercenter\/ThirdPartyLogin|userclient\/ClientGetUserInfo).action script-path=https://raw.githubusercontent.com/WeiGiegie/666/main/lrts.js, requires-body=true, timeout=60, tag=lrts
+
+[MITM]
+hostname = gzapi.mting.info, shapi.mting.info, 118.178.214.118, dapis.mting.info, display.wting.info
+[Rewrite]
+^https?:\/\/118\.178\.214\.118\/yyting\/advertclient\/ClientAdvertList\.action - reject-img
+^https?:\/\/dapis\.mting\.info\/yyting\/advertclient\/ClientAdvertList\.action - reject-img
+^https?:\/\/.*\/yyting\/advertclient\/ClientAdvertList.action - reject
+^https?:\/\/display\.wting\.info\/.*.jpeg - reject-200
